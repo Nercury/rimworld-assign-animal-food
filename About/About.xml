@@ -1,0 +1,40 @@
+<ModMetaData>
+	<name>Assign Animal Food</name>
+	<author>nercury</author>
+  <packageId>nercury.AssignAnimalFood</packageId>
+	<supportedVersions>
+		<li>1.2</li>
+	</supportedVersions>
+	<description>Assign food restrictions to animals.
+
+This mod contains identical functionality from both "Animal Food Restrictions" and "AnimalFoodRestrictionInTab", so they are not needed when this mod is loaded.
+
+Features from the mods above:
+
+- Player-owned animals respect food restrictions
+- A new column appears in Animal tab to manage restrictions
+- Compatible with "Animal Tab"
+
+New features:
+
+- New "Animal" restriction will be automatically created for a new game or existing save    
+- All newly tamed or acquired animals will have "Animal" restriction assigned to them
+- Birthed animals acquire parent's food restriction
+- Hatched birds acquire egg parent's food restriction (when eggs are in a stack, a single parent is assigned to the whole stack though)
+- You can rename "Animal" restriction, and it will still work
+- You can delete "Animal" restriction, but to restore default assignment you will need to create a new restriction named "Animal", and then save and reload the game
+  </description>
+	<url>https://steamcommunity.com/id/nercury/myworkshopfiles/?appid=294100</url>
+  <modDependencies>
+    <li>
+      <packageId>brrainz.harmony</packageId>
+      <displayName>Harmony</displayName>
+      <steamWorkshopUrl>steam://url/CommunityFilePage/2009463077</steamWorkshopUrl>
+      <downloadUrl>https://github.com/pardeike/HarmonyRimWorld/releases/latest</downloadUrl>
+    </li>
+  </modDependencies>
+  <loadAfter>
+		<li>Ludeon.RimWorld</li>
+		<li>brrainz.harmony</li>
+	</loadAfter>
+</ModMetaData>
