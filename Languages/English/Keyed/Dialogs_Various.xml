@@ -2,4 +2,6 @@
 <LanguageData>
   <!-- Food restriction management -->
   <FoodRestrictionAnimal>Animal</FoodRestrictionAnimal>
+  <AssignAnimalFood>Assign Animal Food</AssignAnimalFood>
+  <AssignAnimalFoodPreventEatingAddictiveDrugs>Prevent animals from eating addictive drugs</AssignAnimalFoodPreventEatingAddictiveDrugs>
 </LanguageData>

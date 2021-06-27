@@ -6,9 +6,6 @@ namespace AssignAnimalFood
     {
         public const string Id = "Everyone.AssignAnimalFood";
         public const string Name = "Assign Animal Food";
-        public const string Version = "1.0";
-
-        public static string FoodRestrictionAnimal 
-            => "FoodRestrictionAnimal".TryTranslate(out TaggedString t) ? t.RawText : "Animal";
+        public const string Version = "1.1";
     }
 }

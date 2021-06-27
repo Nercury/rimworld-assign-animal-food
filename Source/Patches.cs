@@ -70,7 +70,7 @@ namespace AssignAnimalFood
 					var motherPawn = motherOrEgg as Pawn;
 					if (motherPawn != null)
 					{
-						Logger.Message($"Congrats {motherOrEgg.Label} for giving birth to {pawn.Label}");
+						//Logger.Message($"Congrats {motherOrEgg.Label} for giving birth to {pawn.Label}");
 						if (pawn.foodRestriction != null && motherPawn.foodRestriction != null)
 						{
 							pawn.foodRestriction.CurrentFoodRestriction = motherPawn.foodRestriction.CurrentFoodRestriction;
@@ -82,7 +82,7 @@ namespace AssignAnimalFood
 					var compHatcher = motherOrEgg.TryGetComp<CompHatcher>();
 					if (compHatcher?.hatcheeParent != null)
                     {
-						Logger.Message($"Congrats {compHatcher?.hatcheeParent.Label} for hatching {pawn.Label}");
+						//Logger.Message($"Congrats {compHatcher?.hatcheeParent.Label} for hatching {pawn.Label}");
 						if (pawn.foodRestriction != null && compHatcher?.hatcheeParent?.foodRestriction != null)
 						{
 							pawn.foodRestriction.CurrentFoodRestriction = compHatcher?.hatcheeParent?.foodRestriction.CurrentFoodRestriction;
@@ -91,6 +91,43 @@ namespace AssignAnimalFood
 					else
                     {
 						Logger.Message($"{motherOrEgg.Label} ({motherOrEgg.GetUniqueLoadID()}) compHatcher not found");
+					}
+				}
+			}
+		}
+	}
+
+	[HarmonyPatch(typeof(FoodUtility), "WillEat", new[] { typeof(Pawn), typeof(Thing), typeof(Pawn), typeof(bool) })]
+	internal static class RimWorld_FoodUtility_WillEatThing
+	{
+		private static void Postfix(this Pawn p, ref bool __result, Thing food, Pawn getter = null, bool careIfNotAcceptableForTitle = true)
+		{
+			if (AssignAnimalFoodMod.Settings.preventEatingAddictiveDrugs && __result)
+			{
+				if (p.def.race.Animal) {
+					if (food.def.IsAddictiveDrug)
+                    {
+						//Logger.Message($"Preventing {p.Label} eating {food.Label}");
+						__result = false;
+					}
+				}
+			}
+		}
+	}
+
+	[HarmonyPatch(typeof(FoodUtility), "WillEat", new[] { typeof(Pawn), typeof(ThingDef), typeof(Pawn), typeof(bool) })]
+	internal static class RimWorld_FoodUtility_WillEatThingDef
+	{
+		private static void Postfix(this Pawn p, ref bool __result, ThingDef food, Pawn getter = null, bool careIfNotAcceptableForTitle = true)
+		{
+			if (AssignAnimalFoodMod.Settings.preventEatingAddictiveDrugs && __result)
+			{
+				if (p.def.race.Animal)
+				{
+					if (food.IsAddictiveDrug)
+					{
+						//Logger.Message($"Preventing {p.Label} eating {food.label}");
+						__result = false;
 					}
 				}
 			}

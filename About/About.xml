@@ -13,7 +13,6 @@ Features from the mods above:
 
 - Player-owned animals respect food restrictions
 - A new column appears in Animal tab to manage restrictions
-- Compatible with "Animal Tab"
 
 New features:
 
@@ -23,6 +22,11 @@ New features:
 - Hatched birds acquire egg parent's food restriction (when eggs are in a stack, a single parent is assigned to the whole stack though)
 - You can rename "Animal" restriction, and it will still work
 - You can delete "Animal" restriction, but to restore default assignment you will need to create a new restriction named "Animal", and then save and reload the game
+
+Compatibility:
+
+- Works with Animal Tab
+- If using the Numbers mod, don't forget to add a food restriction column, because the numbers mod takes over the animals tab by default!
   </description>
 	<url>https://steamcommunity.com/id/nercury/myworkshopfiles/?appid=294100</url>
   <modDependencies>

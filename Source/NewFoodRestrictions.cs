@@ -100,8 +100,8 @@ namespace AssignAnimalFood
 		public static FoodRestriction AddAnimalFoodRestriction(this FoodRestrictionDatabase database)
 		{
             var res = database.MakeNewFoodRestriction();
-            res.label = AnimalMod.FoodRestrictionAnimal;
-			Logger.Message($"Add/Get: Creating {AnimalMod.FoodRestrictionAnimal} food restriction, id {res.id}");
+            res.label = ThisMod.FoodRestrictionAnimal;
+			Logger.Message($"Add/Get: Creating {ThisMod.FoodRestrictionAnimal} food restriction, id {res.id}");
 			res.filter.SetDisallowAll();
 			res.filter.SetAllow(ThingCategoryDefOf.Corpses, true);
 			res.filter.SetAllow(ThingCategoryDefOf.PlantFoodRaw, true);
