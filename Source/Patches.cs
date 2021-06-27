@@ -42,7 +42,7 @@ namespace AssignAnimalFood
 		private static void Postfix(ref Pawn_FoodRestrictionTracker __instance, ref bool __result)
 		{
 			__result = __result 
-				|| (!__instance.pawn.Destroyed && (__instance.pawn.Faction == Faction.OfPlayer || __instance.pawn.HostFaction == Faction.OfPlayer));
+				|| (!__instance.pawn.Destroyed && !__instance.pawn.RaceProps.Humanlike && (__instance.pawn.Faction == Faction.OfPlayer || __instance.pawn.HostFaction == Faction.OfPlayer));
 		}
 	}
 
@@ -97,40 +97,47 @@ namespace AssignAnimalFood
 		}
 	}
 
-	[HarmonyPatch(typeof(FoodUtility), "WillEat", new[] { typeof(Pawn), typeof(Thing), typeof(Pawn), typeof(bool) })]
-	internal static class RimWorld_FoodUtility_WillEatThing
-	{
-		private static void Postfix(this Pawn p, ref bool __result, Thing food, Pawn getter = null, bool careIfNotAcceptableForTitle = true)
-		{
-			if (AssignAnimalFoodMod.Settings.preventEatingAddictiveDrugs && __result)
-			{
-				if (p.def.race.Animal) {
-					if (food.def.IsAddictiveDrug)
+    [HarmonyPatch(typeof(FoodUtility), "WillEat", new[] { typeof(Pawn), typeof(Thing), typeof(Pawn), typeof(bool) })]
+    internal static class RimWorld_FoodUtility_WillEatThing
+    {
+        private static void Postfix(this Pawn p, ref bool __result, Thing food, Pawn getter = null, bool careIfNotAcceptableForTitle = true)
+        {
+            if (AssignAnimalFoodMod.Settings.preventEatingAddictiveDrugs && __result)
+            {
+                if (p != null
+						&& food.def.IsAddictiveDrug
+						&& p.RaceProps != null && p.RaceProps.Animal
+						&& ((p.Faction != null && p.Faction.IsPlayer) || (p.HostFaction != null && p.HostFaction.IsPlayer)))
+                {
+                    if (food.def.IsAddictiveDrug)
                     {
-						//Logger.Message($"Preventing {p.Label} eating {food.Label}");
-						__result = false;
-					}
-				}
-			}
-		}
-	}
+                        //Logger.Message($"Preventing {p.Label} eating {food.Label} thing");
+                        __result = false;
+                    }
+                }
+            }
+        }
+    }
 
-	[HarmonyPatch(typeof(FoodUtility), "WillEat", new[] { typeof(Pawn), typeof(ThingDef), typeof(Pawn), typeof(bool) })]
-	internal static class RimWorld_FoodUtility_WillEatThingDef
-	{
-		private static void Postfix(this Pawn p, ref bool __result, ThingDef food, Pawn getter = null, bool careIfNotAcceptableForTitle = true)
-		{
-			if (AssignAnimalFoodMod.Settings.preventEatingAddictiveDrugs && __result)
-			{
-				if (p.def.race.Animal)
-				{
-					if (food.IsAddictiveDrug)
-					{
-						//Logger.Message($"Preventing {p.Label} eating {food.label}");
-						__result = false;
-					}
-				}
-			}
-		}
-	}
+    [HarmonyPatch(typeof(FoodUtility), "WillEat", new[] { typeof(Pawn), typeof(ThingDef), typeof(Pawn), typeof(bool) })]
+    internal static class RimWorld_FoodUtility_WillEatThingDef
+    {
+        private static void Postfix(this Pawn p, ref bool __result, ThingDef food, Pawn getter = null, bool careIfNotAcceptableForTitle = true)
+        {
+            if (AssignAnimalFoodMod.Settings.preventEatingAddictiveDrugs && __result)
+            {
+                if (p != null)
+                {
+                    if (p != null
+                        && food.IsAddictiveDrug
+						&& p.RaceProps != null && p.RaceProps.Animal
+						&& ((p.Faction != null && p.Faction.IsPlayer) || (p.HostFaction != null && p.HostFaction.IsPlayer)))
+                    {
+                        //Logger.Message($"Preventing {p.Label} eating {food.label} thing def");
+                        __result = false;
+                    }
+                }
+            }
+        }
+    }
 }
