@@ -1,0 +1,61 @@
+<ModMetaData>
+	<name>Assign Animal Food</name>
+	<author>nercury</author>
+  <packageId>nercury.AssignAnimalFood</packageId>
+	<supportedVersions>
+		<li>1.2</li>
+    <li>1.3</li>
+	</supportedVersions>
+	<description>Assign food restrictions to animals.
+
+This mod contains identical functionality from both "Animal Food Restrictions" and "AnimalFoodRestrictionInTab", so they are not needed when this mod is loaded.
+
+Features from the mods above:
+
+- Player-owned animals respect food restrictions
+- A new column appears in Animal tab to manage restrictions
+
+New features:
+
+- New "Animal" restriction will be automatically created for a new game or existing save    
+- All newly tamed or acquired animals will have "Animal" restriction assigned to them
+- Birthed animals acquire parent's food restriction
+- Hatched birds acquire egg parent's food restriction (when eggs are in a stack, a single parent is assigned to the whole stack though)
+- You can rename "Animal" restriction, and it will still work
+- You can delete "Animal" restriction, but to restore default assignment you will need to create a new restriction named "Animal", and then save and reload the game
+- By default, will prevent animals eating nutritious drugs like ambrossia (can be switched off)
+
+Game's 1.3-beta bug
+- There are drugs and plants in food filter, but they do nothing. This is probably a pre-release bug, the drugs should not appear in the food filter, pawns are supposed to either respect drug policies or go for a nutrition source if desperate.
+
+Compatibility:
+
+- Works with Animal Tab
+- If using the Numbers mod, don't forget to add a food restriction column, because the numbers mod takes over the animals tab by default!
+- I did some extra work to make sure the mod could be enabled/disabled. At the start of the map, the mod logs any issues/changes to the developer console. For example, if you add this mod to the existing save, it will tell that a new food restriction was created and will be used as default for animals. If you delete this restriction, the mod will log a message saying that it was unable to find default restriction and will use the first one. If you remove the mod from a save, the next time you open map you will get an error, because the game component that was tracking which food restriction is default could not be loaded. That's ok, just save the game and the next time no error should appear.
+- The mod does not modify food filter hierarchy at all, so it should be compatible with mods that do
+  </description>
+	<url>https://steamcommunity.com/id/nercury/myworkshopfiles/?appid=294100</url>
+  <modDependenciesByVersion>
+    <v1.2>
+      <li>
+        <packageId>brrainz.harmony</packageId>
+        <displayName>Harmony</displayName>
+        <steamWorkshopUrl>steam://url/CommunityFilePage/2009463077</steamWorkshopUrl>
+        <downloadUrl>https://github.com/pardeike/HarmonyRimWorld/releases/latest</downloadUrl>
+      </li>
+    </v1.2>
+    <v1.3>
+      <li>
+        <packageId>brrainz.harmony</packageId>
+        <displayName>Harmony</displayName>
+        <steamWorkshopUrl>steam://url/CommunityFilePage/2009463077</steamWorkshopUrl>
+        <downloadUrl>https://github.com/pardeike/HarmonyRimWorld/releases/latest</downloadUrl>
+      </li>
+    </v1.3>
+  </modDependenciesByVersion>
+  <loadAfter>
+		<li>Ludeon.RimWorld</li>
+		<li>brrainz.harmony</li>
+	</loadAfter>
+</ModMetaData>

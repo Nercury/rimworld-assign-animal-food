@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<Manifest>
+  <identifier>nercury.AssignAnimalFood</identifier>
+  <version>1.2.0</version>
+  <dependencies>
+		<li>brrainz.harmony</li>
+  </dependencies>
+  <incompatibleWith>
+    <li>avilmask.AnimalControls</li>
+    <li>Jaxe.FoodRestrictions</li>
+    <li>hatti.animalfoodrestrictionintab</li>
+    <li>TheGoofyOne.AnimalFoodRestrictionInTab</li>
+  </incompatibleWith>
+  <loadBefore />
+  <loadAfter>
+		<li>Ludeon.RimWorld</li>
+		<li>brrainz.harmony</li>
+	</loadAfter>
+</Manifest>

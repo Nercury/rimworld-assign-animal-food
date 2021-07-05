@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<LanguageData>
+  <!-- Food restriction management -->
+  <FoodRestrictionAnimal>Animal</FoodRestrictionAnimal>
+  <AssignAnimalFood>Assign Animal Food</AssignAnimalFood>
+  <AssignAnimalFoodPreventEatingAddictiveDrugs>Prevent animals from eating addictive drugs</AssignAnimalFoodPreventEatingAddictiveDrugs>
+</LanguageData>
