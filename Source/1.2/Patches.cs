@@ -1,5 +1,6 @@
 ﻿using HarmonyLib;
 using RimWorld;
+using System;
 using Verse;
 
 namespace AssignAnimalFood
@@ -41,7 +42,7 @@ namespace AssignAnimalFood
 	{
 		private static void Postfix(ref Pawn_FoodRestrictionTracker __instance, ref bool __result)
 		{
-			__result = __result 
+			__result = __result
 				|| (!__instance.pawn.Destroyed && !__instance.pawn.RaceProps.Humanlike && (__instance.pawn.Faction == Faction.OfPlayer || __instance.pawn.HostFaction == Faction.OfPlayer));
 		}
 	}
@@ -81,15 +82,15 @@ namespace AssignAnimalFood
 
 					var compHatcher = motherOrEgg.TryGetComp<CompHatcher>();
 					if (compHatcher?.hatcheeParent != null)
-                    {
+					{
 						//Logger.Message($"Congrats {compHatcher?.hatcheeParent.Label} for hatching {pawn.Label}");
 						if (pawn.foodRestriction != null && compHatcher?.hatcheeParent?.foodRestriction != null)
 						{
 							pawn.foodRestriction.CurrentFoodRestriction = compHatcher?.hatcheeParent?.foodRestriction.CurrentFoodRestriction;
 						}
-					} 
+					}
 					else
-                    {
+					{
 						Logger.Message($"{motherOrEgg.Label} ({motherOrEgg.GetUniqueLoadID()}) compHatcher not found");
 					}
 				}
@@ -97,26 +98,54 @@ namespace AssignAnimalFood
 		}
 	}
 
-    [HarmonyPatch(typeof(FoodUtility), "BestFoodSourceOnMap")]
-    internal static class RimWorld_FoodUtility_BestFoodSourceOnMap
-    {
-        private static bool Prefix(Pawn eater, ref bool allowDrug)
-        {
-            if (AssignAnimalFoodMod.Settings.preventEatingAddictiveDrugs)
-            {
-                if (eater != null)
-                {
-                    if (eater.RaceProps != null
-                       && eater.RaceProps.Animal
-                       && ((eater.Faction != null && eater.Faction.IsPlayer) || (eater.HostFaction != null && eater.HostFaction.IsPlayer)))
-                    {
-                        //Logger.Message($"Preventing {eater.Label} eating drugs");
-                        allowDrug = false;
-                    }
-                }
-            }
+	[HarmonyPatch(typeof(FoodUtility), "BestFoodSourceOnMap")]
+	internal static class RimWorld_FoodUtility_BestFoodSourceOnMap
+	{
+		private static bool Prefix(Pawn eater, ref bool allowDrug)
+		{
+			if (AssignAnimalFoodMod.Settings.preventEatingDrugs)
+			{
+				if (eater != null)
+				{
+					if (eater.RaceProps != null
+					   && eater.RaceProps.Animal
+					   && ((eater.Faction != null && eater.Faction.IsPlayer) || (eater.HostFaction != null && eater.HostFaction.IsPlayer)))
+					{
+						//Logger.Message($"Preventing {eater.Label} eating drugs");
+						allowDrug = false;
+					}
+				}
+			}
 
-            return true;
-        }
-    }
+			return true;
+		}
+	}
+
+	[HarmonyPatch(typeof(FoodUtility), "WillEat", new Type[] { typeof(Pawn), typeof(Thing), typeof(Pawn), typeof(bool) })]
+	internal static class RimWorld_FoodUtility_WillEat
+	{
+		private static void Postfix(this Pawn p, Thing food, ref bool __result)
+		{
+			if (!AssignAnimalFoodMod.Settings.ManagesGrowingPlants) return;
+
+			if (p != null && __result)
+			{
+				if (p.RaceProps != null
+					   && p.RaceProps.Animal
+					   && ((p.Faction != null && p.Faction.IsPlayer) || (p.HostFaction != null && p.HostFaction.IsPlayer)))
+				{
+					var plant = food as Plant;
+					if (plant?.def?.plant != null && plant.def.plant.Harvestable)
+					{
+						var zone = GridsUtility.GetZone(plant.Position, plant.Map) as Zone_Growing;
+						if (zone != null)
+						{
+							//Logger.Message($"{p.Label} will not eat {plant.def.label} in zone {zone?.label}");
+							__result = false;
+						}
+					}
+				}
+			}
+		}
+	}
 }

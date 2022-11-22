@@ -1,5 +1,6 @@
 ﻿using HarmonyLib;
 using RimWorld;
+using System;
 using Verse;
 
 namespace AssignAnimalFood
@@ -100,9 +101,9 @@ namespace AssignAnimalFood
     [HarmonyPatch(typeof(FoodUtility), "BestFoodSourceOnMap")]
     internal static class RimWorld_FoodUtility_BestFoodSourceOnMap
     {
-        private static bool Prefix(Pawn eater, ref bool allowDrug)
+        private static bool Prefix(Pawn eater, ref bool allowDrug, ref bool allowHarvest, ref bool allowPlant)
         {
-            if (AssignAnimalFoodMod.Settings.preventEatingAddictiveDrugs)
+            if (AssignAnimalFoodMod.Settings.preventEatingDrugs)
             {
                 if (eater != null)
                 {
@@ -119,4 +120,46 @@ namespace AssignAnimalFood
             return true;
         }
     }
+
+	[HarmonyPatch(typeof(FoodUtility), "WillEat", new Type[] { typeof(Pawn), typeof(Thing), typeof(Pawn), typeof(bool) })]
+	internal static class RimWorld_FoodUtility_WillEat
+	{
+		private static void Postfix(this Pawn p, Thing food, ref bool __result)
+		{
+			if (!AssignAnimalFoodMod.Settings.ManagesGrowingPlants) return;
+
+			if (p != null && __result)
+			{
+				if (p.RaceProps != null
+					   && p.RaceProps.Animal
+					   && ((p.Faction != null && p.Faction.IsPlayer) || (p.HostFaction != null && p.HostFaction.IsPlayer)))
+				{
+					var plant = food as Plant;
+					if (plant?.def?.plant != null && plant.def.plant.Harvestable)
+					{
+						var zone = GridsUtility.GetZone(plant.Position, plant.Map) as Zone_Growing;
+						if (zone != null)
+						{
+							if (zone.allowCut)
+                            {
+								if (AssignAnimalFoodMod.Settings.preventEatingHarvestablesFromAreasDesignatedToCut)
+                                {
+									//Logger.Message($"{p.Label} will not eat {plant.def.label} in zone {zone?.label}");
+									__result = false;
+								}
+                            } 
+							else
+                            {
+								if (AssignAnimalFoodMod.Settings.preventEatingHarvestablesFromAreasNotDesignatedToCut)
+                                {
+									//Logger.Message($"{p.Label} will not eat {plant.def.label} in zone {zone?.label}");
+									__result = false;
+								}
+                            }
+						}
+					}
+				}
+			}
+		}
+	}
 }

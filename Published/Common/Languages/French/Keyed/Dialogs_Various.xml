@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<LanguageData>
+  <!-- Food restriction management -->
+  <FoodRestrictionAnimal>Animaux</FoodRestrictionAnimal>
+  <AssignAnimalFood>Attribuer de la nourriture pour animaux</AssignAnimalFood>
+  <AssignAnimalFoodPreventEatingDrugs>Empêcher les animaux de manger des drogues</AssignAnimalFoodPreventEatingDrugs>
+  <AssignAnimalFoodPreventEatingHarvestablesFromAreas>Empêcher de manger des récoltes dans les zones de culture</AssignAnimalFoodPreventEatingHarvestablesFromAreas>
+  <AssignAnimalFoodPreventEatingHarvestablesFromAreasDesignatedToCut>Empêcher de manger des récoltes dans les zones désignées à tailler</AssignAnimalFoodPreventEatingHarvestablesFromAreasDesignatedToCut>
+  <AssignAnimalFoodPreventEatingHarvestablesFromAreasNotDesignatedToCut>Empêcher de manger des produits récoltables dans des zones non désignées à tailler</AssignAnimalFoodPreventEatingHarvestablesFromAreasNotDesignatedToCut>
+</LanguageData>

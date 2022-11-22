@@ -3,5 +3,8 @@
   <!-- Food restriction management -->
   <FoodRestrictionAnimal>Animal</FoodRestrictionAnimal>
   <AssignAnimalFood>Assign Animal Food</AssignAnimalFood>
-  <AssignAnimalFoodPreventEatingAddictiveDrugs>Prevent animals from eating addictive drugs</AssignAnimalFoodPreventEatingAddictiveDrugs>
+  <AssignAnimalFoodPreventEatingDrugs>Prevent animals from eating drugs</AssignAnimalFoodPreventEatingDrugs>
+  <AssignAnimalFoodPreventEatingHarvestablesFromAreas>Prevent eating harvestables from grow areas</AssignAnimalFoodPreventEatingHarvestablesFromAreas>
+  <AssignAnimalFoodPreventEatingHarvestablesFromAreasDesignatedToCut>Prevent eating harvestables from areas designated to cut</AssignAnimalFoodPreventEatingHarvestablesFromAreasDesignatedToCut>
+  <AssignAnimalFoodPreventEatingHarvestablesFromAreasNotDesignatedToCut>Prevent eating harvestables from areas not designated to cut</AssignAnimalFoodPreventEatingHarvestablesFromAreasNotDesignatedToCut>
 </LanguageData>

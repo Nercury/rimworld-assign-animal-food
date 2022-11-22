@@ -5,35 +5,35 @@
 	<supportedVersions>
 		<li>1.2</li>
     <li>1.3</li>
+    <li>1.4</li>
 	</supportedVersions>
 	<description>Assign food restrictions to animals.
 
-This mod contains identical functionality from both "Animal Food Restrictions" and "AnimalFoodRestrictionInTab", so they are not needed when this mod is loaded.
-
-Features from the mods above:
-
-- Player-owned animals respect food restrictions
+- A new "Animal" restriction will be assigned to colony animals
 - A new column appears in Animal tab to manage restrictions
+- Animals will inherit food restriction from parents
 
-New features:
+This mod was simplified a lot for Rimworld 1.4. It does one thing only and should be easy to understand.
 
-- New "Animal" restriction will be automatically created for a new game or existing save    
-- All newly tamed or acquired animals will have "Animal" restriction assigned to them
-- Birthed animals acquire parent's food restriction
-- Hatched birds acquire egg parent's food restriction (when eggs are in a stack, a single parent is assigned to the whole stack though)
-- You can rename "Animal" restriction, and it will still work
-- You can delete "Animal" restriction, but to restore default assignment you will need to create a new restriction named "Animal", and then save and reload the game
-- By default, will prevent animals eating nutritious drugs like ambrossia (can be switched off)
+Some common caveats:
 
-Game's 1.3-beta bug
-- There are drugs and plants in food filter, but they do nothing. This is probably a pre-release bug, the drugs should not appear in the food filter, pawns are supposed to either respect drug policies or go for a nutrition source if desperate.
+- Animals will respect food restriction on caravans. Maybe it's a good idea to create a separate restriction for traveling so that animals don't starve to death.
 
 Compatibility:
 
 - Works with Animal Tab
-- If using the Numbers mod, don't forget to add a food restriction column, because the numbers mod takes over the animals tab by default!
-- I did some extra work to make sure the mod could be enabled/disabled. At the start of the map, the mod logs any issues/changes to the developer console. For example, if you add this mod to the existing save, it will tell that a new food restriction was created and will be used as default for animals. If you delete this restriction, the mod will log a message saying that it was unable to find default restriction and will use the first one. If you remove the mod from a save, the next time you open map you will get an error, because the game component that was tracking which food restriction is default could not be loaded. That's ok, just save the game and the next time no error should appear.
-- The mod does not modify food filter hierarchy at all, so it should be compatible with mods that do
+- If using the Numbers mod, don't forget to add a food restriction column, if you use Numbers option to take over Animals tab.
+- Mod can be enabled/disabled.
+- The mod does not modify food filter hierarchy at all, so it should be compatible with mods that do.
+
+What was removed in 1.4 (these features still available if you load mod for 1.3):
+
+- Preventing animals from eating drugs, because my quick test with a starving donkey in a closed room showed that the donkey does not want to eat ambrosia.
+- There was an option to prevent animals from eating food in areas designated to cut. Due to the changes in Rimworld internals (seems to be performance-related), the option was cut.
+
+Translations:
+
+- French by qux
   </description>
 	<url>https://steamcommunity.com/id/nercury/myworkshopfiles/?appid=294100</url>
   <modDependenciesByVersion>
@@ -53,6 +53,14 @@ Compatibility:
         <downloadUrl>https://github.com/pardeike/HarmonyRimWorld/releases/latest</downloadUrl>
       </li>
     </v1.3>
+    <v1.4>
+      <li>
+        <packageId>brrainz.harmony</packageId>
+        <displayName>Harmony</displayName>
+        <steamWorkshopUrl>steam://url/CommunityFilePage/2009463077</steamWorkshopUrl>
+        <downloadUrl>https://github.com/pardeike/HarmonyRimWorld/releases/latest</downloadUrl>
+      </li>
+    </v1.4>
   </modDependenciesByVersion>
   <loadAfter>
 		<li>Ludeon.RimWorld</li>
