@@ -59,8 +59,8 @@
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
-    <PostBuildEvent>RD /S /Q "C:\Program Files (x86)\Steam\steamapps\common\RimWorld\Mods\$(SolutionName)\"
-XCOPY "$(SolutionDir)Published" "C:\Program Files (x86)\Steam\steamapps\common\RimWorld\Mods\$(SolutionName)\" /E /Y
+    <PostBuildEvent>RD /S /Q "C:\Steam\steamapps\common\RimWorld\Mods\$(SolutionName)\"
+XCOPY "$(SolutionDir)Published" "C:\Steam\steamapps\common\RimWorld\Mods\$(SolutionName)\" /E /Y
 </PostBuildEvent>
   </PropertyGroup>
 </Project>
