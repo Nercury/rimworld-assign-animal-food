@@ -27,7 +27,7 @@ namespace AssignAnimalFood
 			var animalFoodRestriction = Current.Game.foodRestrictionDatabase.GetAnimalFoodRestriction();
 			if (animalFoodRestriction != null)
 			{
-				pawn.foodRestriction.CurrentFoodRestriction = animalFoodRestriction;
+				pawn.foodRestriction.CurrentFoodPolicy = animalFoodRestriction;
 			}
 			else
 			{
@@ -75,7 +75,7 @@ namespace AssignAnimalFood
 						//Logger.Message($"Congrats {motherOrEgg.Label} for giving birth to {pawn.Label}");
 						if (pawn.foodRestriction != null && motherPawn.foodRestriction != null)
 						{
-							pawn.foodRestriction.CurrentFoodRestriction = motherPawn.foodRestriction.CurrentFoodRestriction;
+							pawn.foodRestriction.CurrentFoodPolicy = motherPawn.foodRestriction.CurrentFoodPolicy;
 						}
 
 						return;
@@ -87,7 +87,7 @@ namespace AssignAnimalFood
 						//Logger.Message($"Congrats {compHatcher?.hatcheeParent.Label} for hatching {pawn.Label}");
 						if (pawn.foodRestriction != null && compHatcher?.hatcheeParent?.foodRestriction != null)
 						{
-							pawn.foodRestriction.CurrentFoodRestriction = compHatcher?.hatcheeParent?.foodRestriction.CurrentFoodRestriction;
+							pawn.foodRestriction.CurrentFoodPolicy = compHatcher?.hatcheeParent?.foodRestriction.CurrentFoodPolicy;
 						}
 					} 
 					else

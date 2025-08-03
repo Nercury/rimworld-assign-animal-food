@@ -5,7 +5,7 @@ namespace AssignAnimalFood
 {
     public static class NewFoodRestrictionExtensions
     {
-		public static FoodRestriction GetAnimalFoodRestriction(this FoodRestrictionDatabase database)
+		public static FoodPolicy GetAnimalFoodRestriction(this FoodRestrictionDatabase database)
 		{
 			var food = Current.Game.GetComponent<AssignAnimalFoodComponent>();
 			if (food == null)
@@ -49,9 +49,9 @@ namespace AssignAnimalFood
 			}
 		}
 
-		public static FoodRestriction AddOrGetAnimalFoodRestriction(this FoodRestrictionDatabase database)
+		public static FoodPolicy AddOrGetAnimalFoodRestriction(this FoodRestrictionDatabase database)
         {
-			FoodRestriction res = null;
+            FoodPolicy res = null;
 
 			var food = Current.Game.GetComponent<AssignAnimalFoodComponent>();
 			if (food == null)
@@ -97,7 +97,7 @@ namespace AssignAnimalFood
 			return res;
         }
 
-		public static FoodRestriction AddAnimalFoodRestriction(this FoodRestrictionDatabase database)
+		public static FoodPolicy AddAnimalFoodRestriction(this FoodRestrictionDatabase database)
 		{
             var res = database.MakeNewFoodRestriction();
             res.label = ThisMod.FoodRestrictionAnimal;
