@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
-VisualStudioVersion = 17.8.34408.163
+VisualStudioVersion = 17.14.36301.6 d17.14
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AssignAnimalFood", "Source\1.2\AssignAnimalFood.csproj", "{D7D21B4A-1DA7-41D8-B202-C58CA8FA62AA}"
 EndProject
@@ -10,6 +10,8 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AssignAnimalFood1.4", "Source\1.4\AssignAnimalFood1.4.csproj", "{13BC7D26-DB37-4F4C-BAF6-1935D67D4749}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AssignAnimalFood1.5", "Source\1.5\AssignAnimalFood1.5.csproj", "{4BD28FDE-7382-4817-B20C-FBF9FAD36270}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AssignAnimalFood1.6", "Source\1.6\AssignAnimalFood1.6.csproj", "{45A09EDC-C4C5-4780-AE56-3EF4590E494B}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -33,6 +35,10 @@ Global
 		{4BD28FDE-7382-4817-B20C-FBF9FAD36270}.Debug|Any CPU.Build.0 = Release|Any CPU
 		{4BD28FDE-7382-4817-B20C-FBF9FAD36270}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{4BD28FDE-7382-4817-B20C-FBF9FAD36270}.Release|Any CPU.Build.0 = Release|Any CPU
+		{45A09EDC-C4C5-4780-AE56-3EF4590E494B}.Debug|Any CPU.ActiveCfg = Release|Any CPU
+		{45A09EDC-C4C5-4780-AE56-3EF4590E494B}.Debug|Any CPU.Build.0 = Release|Any CPU
+		{45A09EDC-C4C5-4780-AE56-3EF4590E494B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{45A09EDC-C4C5-4780-AE56-3EF4590E494B}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
